@@ -1,14 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Blog Generator</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-    <h1>
-        Hello Hamzah!
-    </h1>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}
+    AI Blog Generator
+{% endblock %}
+
+{% block content %}
+    <div class="max-w-7xl mx-auto border border-gray-300 p-8 rounded-lg bg-white text-center shadow-sm">
+        <h1 class="text-4xl font-extrabold text-gray-900">Convert Long Videos to short blogs using AI</h1>
+        <p class="mt-4 text-lg text-gray-600">
+            Generate high-quality blog articles from YouTube videos using artificial intelligence.
+            Simply enter the link to the YouTube video below and let the AI create the content for you!
+        </p>
+        <h2 class="text-left text-xl mt-10 mb-4 font-semibold">Enter Youtube Video Link</h2>
+        <div class="flex space-x-4">
+            <input id="youtubeLink" type="url" placeholder="Paste Youtube Link..." class="flex-grow p-2 border border-blue-400 rounded-l-md">
+            <button id="generateBlogButton" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors">Generate</button>
+        </div>
+    </div>
+
+    <div>
+        
+    </div>
+{% endblock %}

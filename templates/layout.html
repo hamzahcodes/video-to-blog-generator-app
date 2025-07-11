@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            AI Blog Generator
+        {% endblock %}
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="{% url "blog_generator:home" %}" class="flex items-center text-xl font-bold text-blue-600">AI Blog Generator</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                <a href="{% url "blog_generator:home" %}" class="text-gray-700 hover:text-blue-600">Logout</a>
+                {% comment %} <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Services</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
