@@ -14,11 +14,56 @@
         <h2 class="text-left text-xl mt-10 mb-4 font-semibold">Enter Youtube Video Link</h2>
         <div class="flex space-x-4">
             <input id="youtubeLink" type="url" placeholder="Paste Youtube Link..." class="flex-grow p-2 border border-blue-400 rounded-l-md">
-            <button id="generateBlogButton" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors">Generate</button>
+            <button id="generateBlogButton" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors cursor-pointer">Generate</button>
         </div>
+
+        <div id="loader" class="loader-overlay">
+            <div class="loader-spinner"></div>
+        </div>
+
+        <section class="mt-10 flex-grow">
+            <h2 class="text-xl mb-4 font-semibold">Generated Blog Article</h2>
+
+            <div id="blogContent" class="mt-2 text-gray-700 space-y-4">
+
+            </div>
+        </section>
     </div>
 
-    <div>
-        
-    </div>
+    <script>
+        document.getElementById('generateBlogButton').addEventListener('click', async () => {
+
+            const youtubeLink = document.getElementById('youtubeLink').value;
+            const loadingIndicator = document.getElementById('loading');
+            const blogContent = document.getElementById('blogContent');
+
+
+            if(youtubeLink) {
+                document.getElementById('loader').classList.add('active');
+                blogContent.innerHTML = '';
+
+                const endpointURL = '/generate-blog';
+
+                try{
+                    const response = await fetch(endpointURL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify({ link: youtubeLink })
+                    });
+
+                    const data = await response.json();
+                    console.log(data);
+                    blogContent.innerHTML = data.content;
+                    document.getElementById('loader').classList.remove('active');
+                } catch(error) {
+                    console.log('Error', error);
+                    document.getElementById('loader').classList.remove('active');
+                }
+            } else {
+                alert('Please enter a Youtube link!')
+            }
+        });
+    </script>
 {% endblock %}

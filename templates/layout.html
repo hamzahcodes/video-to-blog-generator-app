@@ -10,6 +10,7 @@
             AI Blog Generator
         {% endblock %}
     </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -21,8 +22,10 @@
                     <a href="{% url "blog_generator:home" %}" class="flex items-center text-xl font-bold text-blue-600">AI Blog Generator</a>
                 </div>
                 <div class="hidden md:flex items-center justify-center space-x-4">
-                    <a href="" class="text-gray-700 hover:text-blue-600">Welcome, {{ user.username }}</a>
-                    <a href="{% url "blog_generator:logout" %}" class="text-gray-700 hover:text-blue-600">Logout</a>
+                    {% if user.username %}
+                        <a href="" class="text-gray-700 hover:text-blue-600">Welcome, {{ user.username }}</a>
+                        <a href="{% url "blog_generator:logout" %}" class="text-gray-700 hover:text-blue-600">Logout</a>
+                    {% endif %}
                 {% comment %} <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
                 <a href="#" class="text-gray-700 hover:text-blue-600">Services</a>
                 <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a> {% endcomment %}
